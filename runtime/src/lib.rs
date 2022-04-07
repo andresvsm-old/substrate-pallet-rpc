@@ -42,6 +42,7 @@ pub use sp_runtime::{Perbill, Permill};
 
 /// Import the template pallet.
 pub use pallet_template;
+pub use pallet_items;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -271,6 +272,14 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
+// ---------------------- Items Pallet Configurations ----------------------
+
+/// Configure the pallet-items in pallets/items.
+impl pallet_items::Config for Runtime {
+	type Event = Event;
+	type Currency = Balances;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -288,6 +297,7 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
+		Items: pallet_items,
 	}
 );
 
@@ -383,6 +393,12 @@ impl_runtime_apis! {
 			block_hash: <Block as BlockT>::Hash,
 		) -> TransactionValidity {
 			Executive::validate_transaction(source, tx, block_hash)
+		}
+	}
+
+	impl items_runtime_api::ItemsApi<Block> for Runtime {
+		fn get_sum() -> u32 {
+			ItemsStorage::get_sum()
 		}
 	}
 

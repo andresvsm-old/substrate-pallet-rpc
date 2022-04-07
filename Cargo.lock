@@ -2330,6 +2330,28 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "35e70ee094dc02fd9c13fdad4940090f22dbd6ac7c9e7094a46cf0232a50bc7c"
 
 [[package]]
+name = "items-rpc"
+version = "1.0.0"
+dependencies = [
+ "items-runtime-api",
+ "jsonrpc-core",
+ "jsonrpc-core-client",
+ "jsonrpc-derive",
+ "parity-scale-codec",
+ "serde",
+ "sp-api",
+ "sp-blockchain",
+ "sp-runtime",
+]
+
+[[package]]
+name = "items-runtime-api"
+version = "1.0.0"
+dependencies = [
+ "sp-api",
+]
+
+[[package]]
 name = "itertools"
 version = "0.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3596,6 +3618,7 @@ dependencies = [
  "clap",
  "frame-benchmarking",
  "frame-benchmarking-cli",
+ "items-rpc",
  "jsonrpc-core",
  "node-template-runtime",
  "pallet-transaction-payment-rpc",
@@ -3638,9 +3661,11 @@ dependencies = [
  "frame-system-rpc-runtime-api",
  "frame-try-runtime",
  "hex-literal",
+ "items-runtime-api",
  "pallet-aura",
  "pallet-balances",
  "pallet-grandpa",
+ "pallet-items",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
  "pallet-template",
@@ -3919,6 +3944,23 @@ dependencies = [
  "sp-runtime",
  "sp-session",
  "sp-staking",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-items"
+version = "4.0.0-dev"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "log",
+ "pallet-balances",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
  "sp-std",
 ]
 
